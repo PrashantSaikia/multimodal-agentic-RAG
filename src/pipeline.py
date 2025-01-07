@@ -17,8 +17,12 @@ def list_supported_files(inputPath, supported_extensions= [".pdf"]):
         List[str]: A list of file paths with supported extensions.
     """
     # Retrieve all files matching the input path and filter by supported extensions
-    file_list = glob(inputPath)
-    return [f for f in file_list if Path(f).suffix in supported_extensions]
+    # Use '**/*.pdf' to search for PDFs recursively inside the folder
+    file_list = glob(f"{inputPath}/**/*", recursive=True)
+    file_list = [f for f in file_list if Path(f).suffix in supported_extensions]
+    
+    print(f"Files found for processing: {file_list}")
+    return file_list
 
 
 def pipeline(inputPath, 
