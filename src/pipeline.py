@@ -38,7 +38,7 @@ def pipeline(inputPath,
     chunks, image_documents= [], []
 
     for file_path in files_list:
-        print("processing started ...")
+        print("processing {file_path} ...")
 
         text_docs= parser.parsing_function(file_path)
         parser.extract_tables(file_path)
